@@ -36,7 +36,7 @@ export const Tasks: React.FC = () => {
         }
         return task
       });
-      setTasks(newTasks);
+      //setTasks(newTasks);
      }
 
  return (
