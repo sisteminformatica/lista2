@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { TasksContext } from "../../context/TasksContext";
 
 import styles from "./styles.module.scss";
@@ -26,18 +26,20 @@ export const Tasks: React.FC = () => {
            
   }
 
-     function handleToggleTasksStatus(taskId: number) {
+  function handleToggleTasksStatus(taskId: number) {
       const newTasks = tasks.map((task) => {
         if (taskId === task.id) {
           return {
-            ...Tasks,
-            done: !task.done
+            ...tasks,
+            done: !task.done            
           }
         }
-        return task
+        return tasks
       });
       //setTasks(newTasks);
-     }
+  }
+
+  function handleRemoveTasks(taskId: number) {}
 
  return (
     <section className={styles.container}>
@@ -60,13 +62,16 @@ export const Tasks: React.FC = () => {
          {tasks.map((task) => {
            return (
              <li key={task.id}>
-               <input type="checkbox" 
+               <input 
+               type="checkbox" 
                id={"task-$(task.id)"} 
                onChange={() => handleToggleTasksStatus(task.id)}              
                />
                <label 
                className={task.done ? styles.done : ''}
-               htmlFor={"task-$(task.id)"}>{task.title}</label>
+               htmlFor={"task-$(task.id)"}>{task.title}
+               </label>
+               <button>Remover</button>
              </li>
            );
          })}
@@ -111,7 +116,7 @@ export const Tasks: React.FC = () => {
 
   //   function handleRemoveTasks(taskId: number) {}
 
-  //   //salvando dados no localStorage. transformando array em string
+  //   salvando dados no localStorage. transformando array em string
   //   localStorage.setItem("tasks", JSON.stringify(newTasks));
   //   setTaskTitle(""); //depois de add os dados no array task limpa variavel taskTitle
   // }
