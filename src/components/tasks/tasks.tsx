@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { TasksContext } from "../../context/TasksContext";
 
 import styles from "./styles.module.scss";
+import { FiTrash } from 'react-icons/fi';
 
 export const Tasks: React.FC = () => {
   const [taskTitle, setTaskTitle] = useState("");
@@ -26,20 +27,26 @@ export const Tasks: React.FC = () => {
            
   }
 
-  function handleToggleTasksStatus(taskId: number) {
-      const newTasks = tasks.map((task) => {
-        if (taskId === task.id) {
-          return {
-            ...tasks,
-            done: !task.done            
-          }
-        }
-        return tasks
-      });
-      //setTasks(newTasks);
+  function handleToggleTasksStatus(id: number) {
+    const taskIndex = tasks.findIndex((task) => {
+      return task.id === id;
+    });
+
+    const tempTasks = [...tasks];
+  
+    tempTasks[taskIndex].done = !tempTasks[taskIndex].done;
+
+    setTasks(tempTasks);
   }
 
-  function handleRemoveTasks(taskId: number) {}
+  function handleRemoveTask(id: number) {
+    const taskIndex = tasks.findIndex((task) => {
+      return task.id === id;
+    });
+
+    const newTasks = tasks.filter((task) => task.id !== id);
+    setTasks(newTasks);
+  }
 
  return (
     <section className={styles.container}>
@@ -71,7 +78,8 @@ export const Tasks: React.FC = () => {
                className={task.done ? styles.done : ''}
                htmlFor={"task-$(task.id)"}>{task.title}
                </label>
-               <button>Remover</button>
+            <button onClick={() => handleRemoveTask(task.id)}>Remover</button>
+
              </li>
            );
          })}

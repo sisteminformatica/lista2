@@ -22,6 +22,9 @@ aula - hook de memorização - iniciar
 
 consultar a biblioteca react hook form
 
+utilizando incones com React Icons
+npm isntall react-icons --save
+
 
 In the project directory, you can run:
 
