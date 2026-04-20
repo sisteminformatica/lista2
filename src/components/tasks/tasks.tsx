@@ -27,14 +27,11 @@ export const Tasks: React.FC = () => {
   }
 
   function handleToggleTasksStatus(id: number) {
-    const taskIndex = tasks.findIndex((task) => {
-      return task.id === id;
-    });
+    const taskIndex = tasks.findIndex((task) => task.id === id);
 
     if (taskIndex === -1) return; // Verifica se a tarefa foi encontrada
 
     const tempTasks = [...tasks];
-
     tempTasks[taskIndex].done = !tempTasks[taskIndex].done;
 
     setTasks(tempTasks);
