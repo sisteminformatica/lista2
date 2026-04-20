@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { TasksContext } from "../../context/TasksContext";
 
 import styles from "./styles.module.scss";
-import { FiTrash } from 'react-icons/fi';
 
 export const Tasks: React.FC = () => {
   const [taskTitle, setTaskTitle] = useState("");
@@ -32,8 +31,10 @@ export const Tasks: React.FC = () => {
       return task.id === id;
     });
 
+    if (taskIndex === -1) return; // Verifica se a tarefa foi encontrada
+
     const tempTasks = [...tasks];
-  
+
     tempTasks[taskIndex].done = !tempTasks[taskIndex].done;
 
     setTasks(tempTasks);

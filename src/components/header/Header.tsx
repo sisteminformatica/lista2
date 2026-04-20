@@ -8,7 +8,7 @@ import { TasksContext } from "../../context/TasksContext";
 export const Header: React.FC = () => {
     const { tasks, setTasks } = useContext(TasksContext);
     const fileInputRef = useRef<HTMLInputElement>(null);
-    
+
     const totalTasks = tasks.length;
 
     const totalPending = tasks.reduce((total, task) => {
@@ -48,7 +48,7 @@ export const Header: React.FC = () => {
        try {
          const content = e.target?.result as string;
          const parsedData = JSON.parse(content);
-         
+
          // Valida se é um array de tarefas
          if (Array.isArray(parsedData)) {
            localStorage.setItem("tasks", JSON.stringify(parsedData));
@@ -63,7 +63,7 @@ export const Header: React.FC = () => {
        }
      };
      reader.readAsText(file);
-     
+
      // Limpa o input
      if (fileInputRef.current) {
        fileInputRef.current.value = "";
@@ -75,14 +75,11 @@ export const Header: React.FC = () => {
       <div className={styles.container}>
         <div>
           <h1>Minha Lista</h1>
-          <p><a href="https://sisteminformaticacom.br"></a>Sistem Informática (85)99995-7239</p>          
+          <p>Sistem Informática (85)99995-7239</p>
         </div>
 
-<<<<<<< HEAD
         <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-          <button 
-        <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-          <button 
+          <button
             onClick={exportData}
             style={{
               padding: "8px 16px",
@@ -96,8 +93,8 @@ export const Header: React.FC = () => {
           >
             📥 Exportar Dados
           </button>
-          
-          <button 
+
+          <button
             onClick={() => fileInputRef.current?.click()}
             style={{
               padding: "8px 16px",
@@ -111,7 +108,7 @@ export const Header: React.FC = () => {
           >
             📤 Importar Dados
           </button>
-          
+
           <input
             type="file"
             accept=".json"
@@ -120,8 +117,11 @@ export const Header: React.FC = () => {
             style={{ display: "none" }}
           />
         </div>
-ue={totalPending} />
-         <StatsCard title="Titulo Concluidas" value={totalDone} /> 
+
+        <div>
+         <StatsCard title="Total de Tarefas" value={totalTasks} />
+         <StatsCard title="Titulo Pendentes" value={totalPending} />
+         <StatsCard title="Titulo Concluidas" value={totalDone} />
         </div>
       </div>
     </header>
