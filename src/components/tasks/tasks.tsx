@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 
 export const Tasks: React.FC = () => {
   const [taskTitle, setTaskTitle] = useState("");
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const { tasks, setTasks } = useContext(TasksContext);
 
   function handleSubmitAddTask(event: React.FormEvent) {
@@ -46,6 +47,22 @@ export const Tasks: React.FC = () => {
     setTasks(newTasks);
   }
 
+  function handleSortTasks() {
+    const sortedTasks = [...tasks].sort((a, b) => {
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+
+      if (sortOrder === 'asc') {
+        return titleA.localeCompare(titleB);
+      } else {
+        return titleB.localeCompare(titleA);
+      }
+    });
+
+    setTasks(sortedTasks);
+    setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+  }
+
  return (
     <section className={styles.container}>
        <form onSubmit={handleSubmitAddTask}>
@@ -63,6 +80,17 @@ export const Tasks: React.FC = () => {
          </div>
          <button type="submit">Adicionar Tarefa</button>
        </form>
+
+       <div className={styles.sortContainer}>
+         <button
+           onClick={handleSortTasks}
+           className={styles.sortButton}
+           title={`Ordenar ${sortOrder === 'asc' ? 'descendente' : 'ascendente'}`}
+         >
+           🔤 {sortOrder === 'asc' ? 'A-Z' : 'Z-A'}
+         </button>
+       </div>
+
         <ul>
          {tasks.map((task) => {
            return (
