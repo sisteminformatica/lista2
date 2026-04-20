@@ -78,6 +78,9 @@ export const Header: React.FC = () => {
           <p><a href="https://sisteminformaticacom.br"></a>Sistem Informática (85)99995-7239</p>          
         </div>
 
+<<<<<<< HEAD
+        <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+          <button 
         <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
           <button 
             onClick={exportData}
@@ -117,10 +120,7 @@ export const Header: React.FC = () => {
             style={{ display: "none" }}
           />
         </div>
-
-        <div>
-         <StatsCard title="Total de Tarefas" value={totalTasks} />
-         <StatsCard title="Titulo Pendentes" value={totalPending} />
+ue={totalPending} />
          <StatsCard title="Titulo Concluidas" value={totalDone} /> 
         </div>
       </div>
