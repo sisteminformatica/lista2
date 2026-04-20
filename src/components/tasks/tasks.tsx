@@ -39,10 +39,6 @@ export const Tasks: React.FC = () => {
   }
 
   function handleRemoveTask(id: number) {
-    const taskIndex = tasks.findIndex((task) => {
-      return task.id === id;
-    });
-
     const newTasks = tasks.filter((task) => task.id !== id);
     setTasks(newTasks);
   }
