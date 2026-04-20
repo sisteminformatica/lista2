@@ -51,15 +51,59 @@
     li {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      transition: background-color 0.2s;
 
-      input {
-        height: 1rem;
-        width: 5rem;
+      &:hover {
+        background: #f0f0f0;
       }
 
-      label {
-        font-size: 1.1rem;
+      .taskContent {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex: 1;
+
+        input {
+          height: 1rem;
+          width: 1rem;
+          margin: 0;
+        }
+
+        label {
+          font-size: 1.1rem;
+          margin: 0;
+          cursor: pointer;
+          flex: 1;
+        }
+      }
+
+      .removeButton {
+        background: transparent;
+        border: none;
+        color: #dc3545;
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+
+        &:hover {
+          background: #dc3545;
+          color: white;
+        }
+
+        &:focus {
+          outline: 2px solid #dc3545;
+          outline-offset: 2px;
+        }
       }
     }
   }

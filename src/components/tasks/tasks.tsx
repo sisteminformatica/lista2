@@ -66,18 +66,25 @@ export const Tasks: React.FC = () => {
         <ul>
          {tasks.map((task) => {
            return (
-             <li key={task.id}>
-               <input 
-               type="checkbox" 
-               id={"task-$(task.id)"} 
-               onChange={() => handleToggleTasksStatus(task.id)}              
-               />
-               <label 
-               className={task.done ? styles.done : ''}
-               htmlFor={"task-$(task.id)"}>{task.title}
-               </label>
-            <button onClick={() => handleRemoveTask(task.id)}>Remover</button>
-
+             <li key={task.id} className={styles.taskItem}>
+               <div className={styles.taskContent}>
+                 <input
+                 type="checkbox"
+                 id={`task-${task.id}`}
+                 onChange={() => handleToggleTasksStatus(task.id)}
+                 />
+                 <label
+                 className={task.done ? styles.done : ''}
+                 htmlFor={`task-${task.id}`}>{task.title}
+                 </label>
+               </div>
+               <button
+                 onClick={() => handleRemoveTask(task.id)}
+                 className={styles.removeButton}
+                 title="Remover tarefa"
+               >
+                 🗑️
+               </button>
              </li>
            );
          })}
